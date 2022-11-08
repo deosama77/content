@@ -1,0 +1,35 @@
+
+table, td, th {  
+    border: 1px solid #ddd;
+    text-align: left;
+    }
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    padding: 2px 0px 0px 0px ;
+  }
+  
+  td{
+    padding: 3px 0px 0px 2px;
+  }
+  
+  /* tr:hover {
+    transition: all .3s;
+    background-color: #ddd;
+  } */
+  
+  td.col_header{
+    width: 210px;
+  }
+  
+  .row_header{
+    text-align: center;
+    background-color: #e1f5fe;
+  }
+  
+  
+  
