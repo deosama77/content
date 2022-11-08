@@ -4,8 +4,8 @@ import UseInputTextField from "../../components/UseInputTextField";
 import RowTable from "./RowTable";
 
 function CustomTable({tableRows=[] , headerForm=""}) {
-  const tableRowsMap = tableRows.map(({ name, fields }) => {
-    return <RowTable name={name} fields={fields}></RowTable>;
+  const tableRowsMap = tableRows.map(({ name, fields } , i) => {
+    return <RowTable name={name} fields={fields} key={i+name}></RowTable>;
   });
   return (
     <table>

@@ -1,32 +1,59 @@
-import * as React from 'react';
-import TextField from '@mui/material/TextField';
-import Dialog from '@mui/material/Dialog';
-import DialogTitle from '@mui/material/DialogTitle';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogActions from '@mui/material/DialogActions';
-import Button from '@mui/material/Button';
-import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
+import * as React from "react";
+import TextField from "@mui/material/TextField";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogActions from "@mui/material/DialogActions";
+import Button from "@mui/material/Button";
+import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
+
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
 
 const filter = createFilterOptions();
 
 export default function UseAutoComplete() {
   const [value, setValue] = React.useState(null);
   const [open, toggleOpen] = React.useState(false);
+  const [platfomrs, setPlatfoms] = React.useState([
+    { title: "Platform 1", year: 1994 },
+    { title: "Platform 2", year: 1972 },
+    { title: "Platform 3", year: 1974 },
+    { title: "Platform 4", year: 2008 },
+    { title: "Platform 5", year: 1994 },
+    { title: "Platform 6", year: 1972 },
+    { title: "Platform 7", year: 1974 },
+    { title: "Platform 8", year: 2008 },
+    { title: "Platform 9", year: 1994 },
+    { title: "Platform 10", year: 1972 },
+    { title: "Platform 11", year: 1974 },
+    { title: "Platform 12", year: 2008 },
+  ]);
+
+  const [checked, setChecked] = React.useState(true);
+
+  const [dialogValue, setDialogValue] = React.useState({
+    title: "",
+    year: "",
+  });
 
   const handleClose = () => {
     setDialogValue({
-      title: '',
-      year: '',
+      title: "",
+      year: "",
     });
-
     toggleOpen(false);
   };
 
-  const [dialogValue, setDialogValue] = React.useState({
-    title: '',
-    year: '',
-  });
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
+  };
+
+  const handleAddPlatform = () => {
+    if(checked)
+    setPlatfoms((prevValue) => [...prevValue, dialogValue]);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -43,20 +70,20 @@ export default function UseAutoComplete() {
       <Autocomplete
         value={value}
         onChange={(event, newValue) => {
-          if (typeof newValue === 'string') {
+          if (typeof newValue === "string") {
             // timeout to avoid instant validation of the dialog's form.
             setTimeout(() => {
               toggleOpen(true);
               setDialogValue({
                 title: newValue,
-                year: '',
+                year: "",
               });
             });
           } else if (newValue && newValue.inputValue) {
             toggleOpen(true);
             setDialogValue({
               title: newValue.inputValue,
-              year: '',
+              year: "",
             });
           } else {
             setValue(newValue);
@@ -65,19 +92,18 @@ export default function UseAutoComplete() {
         filterOptions={(options, params) => {
           const filtered = filter(options, params);
 
-          if (params.inputValue !== '') {
+          if (params.inputValue !== "") {
             filtered.push({
               inputValue: params.inputValue,
               title: `Add "${params.inputValue}"`,
             });
           }
-
           return filtered;
         }}
         id="free-solo-dialog-demo"
-        options={top100Films}
+        options={platfomrs}
         getOptionLabel={(option) => {
-          if (typeof option === 'string') {
+          if (typeof option === "string") {
             return option;
           }
           if (option.inputValue) {
@@ -95,10 +121,10 @@ export default function UseAutoComplete() {
       />
       <Dialog open={open} onClose={handleClose}>
         <form onSubmit={handleSubmit}>
-          <DialogTitle>Add a new film</DialogTitle>
+          <DialogTitle>Add a new platform</DialogTitle>
           <DialogContent>
             <DialogContentText>
-              Did you miss any film in our list? Please, add it!
+              Did you miss any paltform in our list? Please, add it!
             </DialogContentText>
             <TextField
               autoFocus
@@ -118,25 +144,15 @@ export default function UseAutoComplete() {
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose}>Cancel</Button>
-            <Button type="submit">Add</Button>
+            <Button type="submit" onClick={handleAddPlatform}>Add</Button>
+              <FormControlLabel
+                control={<Checkbox checked={checked} onChange={handleChange} />}
+                label="ADD TO LIST"
+              />
+             
           </DialogActions>
         </form>
       </Dialog>
     </React.Fragment>
   );
 }
-
-const top100Films = [
-  { title: 'Platform 1', year: 1994 },
-  { title: 'Platform 2', year: 1972 },
-  { title: 'Platform 3', year: 1974 },
-  { title: 'Platform 4', year: 2008 },
-  { title: 'Platform 5', year: 1994 },
-  { title: 'Platform 6', year: 1972 },
-  { title: 'Platform 7', year: 1974 },
-  { title: 'Platform 8', year: 2008 },
-  { title: 'Platform 9', year: 1994 },
-  { title: 'Platform 10', year: 1972 },
-  { title: 'Platform 11', year: 1974 },
-  { title: 'Platform 12', year: 2008 },
-];

@@ -1,5 +1,4 @@
 import React from "react";
-import "./Operation.css";
 function ContentOperation(props) {
   return (
     <table>

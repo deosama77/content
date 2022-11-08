@@ -10,13 +10,13 @@ import Button from "@mui/material/Button";
 import { Card, CardActions, CardContent } from "@mui/material";
 
 function App() {
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-  }));
+  // const Item = styled(Paper)(({ theme }) => ({
+  //   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  //   ...theme.typography.body2,
+  //   padding: theme.spacing(1),
+  //   textAlign: "center",
+  //   color: theme.palette.text.secondary,
+  // }));
 
   return (
     <MainContainer>
@@ -36,7 +36,7 @@ function App() {
             </Grid>
           </Box>
         </CardContent>
-        <CardActions textAlign="right" sx={{ position: "fixed", bottom: 2 , right:2}}>
+        <CardActions sx={{ position: "fixed", bottom: 2 , right:2}}>
           <Button variant="contained" size="small">
             Next
           </Button>
