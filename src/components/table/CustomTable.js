@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./Table.module.css";
-import UseInputTextField from "../../components/UseInputTextField";
 import RowTable from "./RowTable";
 
 function CustomTable({tableRows=[] , headerForm=""}) {
@@ -11,7 +10,7 @@ function CustomTable({tableRows=[] , headerForm=""}) {
     <table>
       <thead>
         <tr>
-          <th colSpan={3} className={styles.row_header}>
+          <th colSpan={2} className={styles.row_header}>
             {headerForm}
           </th>
         </tr>

@@ -1,27 +1,32 @@
 export const  ContentEngineeringTableRows = [
-    {
-      name: "mainHeader",
-      fields: [
-        { rowHeader: true, colHeader: false, text: "" },
-        { rowHeader: true, colHeader: false, text: "FILL IN COLLUMN" },
-        { rowHeader: true, colHeader: false, text: "DROP LIST" },
-      ],
-    },
+    // {
+    //   name: "mainHeader",
+    //   fields: [
+    //     { rowHeader: true, colHeader: false, text: "" },
+    //     { rowHeader: true, colHeader: false, text: "FILL IN COLLUMN" },
+    //     { rowHeader: true, colHeader: false, text: "DROP LIST" },
+    //   ],
+    // },
     {
       name: "PLATFORM",
       fields: [
         { rowHeader: false, colHeader: true, text: "PLATFORM" },
-        {
-          rowHeader: false,
-          colHeader: false,
-          text: "",
-          typeInput: "textField",
-        },
+        // {
+        //   rowHeader: false,
+        //   colHeader: false,
+        //   text: "",
+        //   typeInput: "textField",
+        // },
         {
           rowHeader: false,
           colHeader: false,
           text: "",
           typeInput: "autoComplete",
+          autocompleteId : "1",
+          autocompleteOptionsRemotly : [
+            { label: "Facebook" , id:"fb" },
+            { label: "Instagram" ,id:"intsa"},
+          ],
         },
       ],
     },
@@ -29,17 +34,24 @@ export const  ContentEngineeringTableRows = [
       name: "PLACEMENT",
       fields: [
         { rowHeader: false, colHeader: true, text: "PLACEMENT" },
+        // {
+        //   rowHeader: false,
+        //   colHeader: false,
+        //   text: "",
+        //   typeInput: "textField",
+        // },
         {
           rowHeader: false,
           colHeader: false,
           text: "",
-          typeInput: "textField",
-        },
-        {
-          rowHeader: false,
-          colHeader: false,
-          text: "",
-          typeInput: "AutoCompleteComboBox",
+          typeInput: "autoComplete",
+          autocompleteId : "2",
+          autocompleteOptionsRemotly : [
+            { label: "Facebook" , id:"fb" },
+            { label: "Instagram" ,id:"intsa"},
+            { label: "Audience network" ,id:"network"},
+            { label: "Messenger" ,id:"messenger"},
+          ],
         },
       ],
     },
@@ -47,17 +59,22 @@ export const  ContentEngineeringTableRows = [
       name: "PAGE NAME",
       fields: [
         { rowHeader: false, colHeader: true, text: "PAGE NAME" },
+        // {
+        //   rowHeader: false,
+        //   colHeader: false,
+        //   text: "",
+        //   typeInput: "textField",
+        // },
         {
           rowHeader: false,
           colHeader: false,
           text: "",
-          typeInput: "textField",
-        },
-        {
-          rowHeader: false,
-          colHeader: false,
-          text: "",
-          typeInput: "AutoCompleteFreeSolo",
+          typeInput: "autoComplete",
+          autocompleteId : "pagename",
+          autocompleteOptionsRemotly : [
+            { label: "Sense MY" , id:"sensMy" },
+            
+          ],
         },
       ],
     },
@@ -65,12 +82,12 @@ export const  ContentEngineeringTableRows = [
       name: "CAMPAIGN NAME",
       fields: [
         { rowHeader: false, colHeader: true, text: "CAMPAIGN NAME" },
-        {
-          rowHeader: false,
-          colHeader: false,
-          text: "",
-          typeInput: "textField",
-        },
+        // {
+        //   rowHeader: false,
+        //   colHeader: false,
+        //   text: "",
+        //   typeInput: "textField",
+        // },
         {
           rowHeader: false,
           colHeader: false,
@@ -83,12 +100,12 @@ export const  ContentEngineeringTableRows = [
       name: "CAMPAIGN OBJECTIVE",
       fields: [
         { rowHeader: false, colHeader: true, text: "CAMPAIGN OBJECTIVE" },
-        {
-          rowHeader: false,
-          colHeader: false,
-          text: "",
-          typeInput: "textField",
-        },
+        // {
+        //   rowHeader: false,
+        //   colHeader: false,
+        //   text: "",
+        //   typeInput: "textField",
+        // },
         {
           rowHeader: false,
           colHeader: false,
@@ -101,12 +118,12 @@ export const  ContentEngineeringTableRows = [
       name: "RETARGETING",
       fields: [
         { rowHeader: false, colHeader: true, text: "RETARGETING" },
-        {
-          rowHeader: false,
-          colHeader: false,
-          text: "",
-          typeInput: "textField",
-        },
+        // {
+        //   rowHeader: false,
+        //   colHeader: false,
+        //   text: "",
+        //   typeInput: "textField",
+        // },
         {
           rowHeader: false,
           colHeader: false,
@@ -119,12 +136,12 @@ export const  ContentEngineeringTableRows = [
       name: "ENGAGEMENT",
       fields: [
         { rowHeader: false, colHeader: true, text: "ENGAGEMENT" },
-        {
-          rowHeader: false,
-          colHeader: false,
-          text: "",
-          typeInput: "textField",
-        },
+        // {
+        //   rowHeader: false,
+        //   colHeader: false,
+        //   text: "",
+        //   typeInput: "textField",
+        // },
         {
           rowHeader: false,
           colHeader: false,
@@ -137,12 +154,12 @@ export const  ContentEngineeringTableRows = [
       name: "ADD SET NAME",
       fields: [
         { rowHeader: false, colHeader: true, text: "ADD SET NAME" },
-        {
-          rowHeader: false,
-          colHeader: false,
-          text: "",
-          typeInput: "textField",
-        },
+        // {
+        //   rowHeader: false,
+        //   colHeader: false,
+        //   text: "",
+        //   typeInput: "textField",
+        // },
         {
           rowHeader: false,
           colHeader: false,
@@ -155,12 +172,12 @@ export const  ContentEngineeringTableRows = [
       name: "CUSTOM AUDIENCE",
       fields: [
         { rowHeader: false, colHeader: true, text: "CUSTOM AUDIENCE" },
-        {
-          rowHeader: false,
-          colHeader: false,
-          text: "",
-          typeInput: "textField",
-        },
+        // {
+        //   rowHeader: false,
+        //   colHeader: false,
+        //   text: "",
+        //   typeInput: "textField",
+        // },
         {
           rowHeader: false,
           colHeader: false,
@@ -173,12 +190,12 @@ export const  ContentEngineeringTableRows = [
       name: "EXCLUDED CUSTOM",
       fields: [
         { rowHeader: false, colHeader: true, text: "EXCLUDED CUSTOM" },
-        {
-          rowHeader: false,
-          colHeader: false,
-          text: "",
-          typeInput: "textField",
-        },
+        // {
+        //   rowHeader: false,
+        //   colHeader: false,
+        //   text: "",
+        //   typeInput: "textField",
+        // },
         {
           rowHeader: false,
           colHeader: false,
