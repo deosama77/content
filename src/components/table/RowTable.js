@@ -4,7 +4,13 @@ import UseInputTextField from "../UseInputTextField";
 import styles from "./Table.module.css";
 
 function RowTable({ fields = [] }) {
-  const getContentField = ({ text, typeInput , autocompleteOptionsRemotly , autocompleteId }) => {
+  const getContentField = ({
+    text,
+    typeInput,
+    autocompleteOptionsRemotly,
+    autocompleteId,
+    multiple,
+  }) => {
     if (text && text !== "") {
       return text;
     } else if (typeInput === "textField") {
@@ -14,6 +20,7 @@ function RowTable({ fields = [] }) {
         <UseAutoComplete
           autocompleteId={autocompleteId}
           autocompleteOptionsRemotly={autocompleteOptionsRemotly}
+          multiple={multiple}
         ></UseAutoComplete>
       );
     } else {
@@ -30,6 +37,7 @@ function RowTable({ fields = [] }) {
         typeInput,
         autocompleteId,
         autocompleteOptionsRemotly,
+        multiple,
       },
       i
     ) => (
@@ -44,6 +52,7 @@ function RowTable({ fields = [] }) {
           typeInput,
           autocompleteId,
           autocompleteOptionsRemotly,
+          multiple,
         })}
       </td>
     )

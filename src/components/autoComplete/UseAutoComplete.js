@@ -10,8 +10,6 @@ export default function UseAutoComplete({
   autocompleteId = "-1",
   autocompleteOptionsRemotly = [],
 }) {
-  console.log("AutoCompleteId" , autocompleteId);
-  console.log("autocompleteOptionsRemotly" , autocompleteOptionsRemotly);
   const [value, setValue] = useState(null);
   const [openDialog, toggleOpenDialog] = useState(false);
   const [autocompleteOptions, setAutocompleteOptions] = useState(
@@ -22,6 +20,7 @@ export default function UseAutoComplete({
     label: "",
     id:""
   });
+
 
   const handleClose = () => {
     setDialogValue({
@@ -101,6 +100,7 @@ export default function UseAutoComplete({
         id={autocompleteId}
         freeSolo
         selectOnFocus
+        
         clearOnBlur
         handleHomeEndKeys
         onChange={(event, newValue) =>
