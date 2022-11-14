@@ -9,6 +9,7 @@ const filter = createFilterOptions();
 export default function UseAutoComplete({
   autocompleteId = "-1",
   autocompleteOptionsRemotly = [],
+  sendData=()=>{}
 }) {
   const [value, setValue] = useState(null);
   const [openDialog, toggleOpenDialog] = useState(false);
@@ -36,7 +37,10 @@ export default function UseAutoComplete({
       label: dialogValue.label,
       id:dialogValue.id
     });
-
+    sendData({
+      label: dialogValue.label,
+      id:dialogValue.id
+    })
     handleClose();
   };
 
@@ -57,6 +61,7 @@ export default function UseAutoComplete({
         id:newValue.inputValue
       });
     } else {
+      sendData(newValue)
       setValue(newValue);
     }
   };
@@ -100,7 +105,6 @@ export default function UseAutoComplete({
         id={autocompleteId}
         freeSolo
         selectOnFocus
-        
         clearOnBlur
         handleHomeEndKeys
         onChange={(event, newValue) =>

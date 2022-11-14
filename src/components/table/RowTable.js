@@ -1,15 +1,17 @@
 import React from "react";
 import UseAutoComplete from "../autoComplete/UseAutoComplete";
+import UseAutoCompleteMulti from "../UseAutoCompleteMulti";
 import UseInputTextField from "../UseInputTextField";
 import styles from "./Table.module.css";
 
 function RowTable({ fields = [] }) {
+
   const getContentField = ({
     text,
     typeInput,
     autocompleteOptionsRemotly,
     autocompleteId,
-    multiple,
+    sendData
   }) => {
     if (text && text !== "") {
       return text;
@@ -20,10 +22,17 @@ function RowTable({ fields = [] }) {
         <UseAutoComplete
           autocompleteId={autocompleteId}
           autocompleteOptionsRemotly={autocompleteOptionsRemotly}
-          multiple={multiple}
+          sendData={sendData}
         ></UseAutoComplete>
       );
-    } else {
+    } else if(typeInput==="useAutoCompleteMulti"){
+      return <UseAutoCompleteMulti
+      autocompleteId={autocompleteId}
+      autocompleteOptionsRemotly={autocompleteOptionsRemotly}
+      ></UseAutoCompleteMulti>
+    }
+    
+    else {
       return "";
     }
   };
@@ -37,7 +46,7 @@ function RowTable({ fields = [] }) {
         typeInput,
         autocompleteId,
         autocompleteOptionsRemotly,
-        multiple,
+        sendData
       },
       i
     ) => (
@@ -52,7 +61,7 @@ function RowTable({ fields = [] }) {
           typeInput,
           autocompleteId,
           autocompleteOptionsRemotly,
-          multiple,
+          sendData
         })}
       </td>
     )

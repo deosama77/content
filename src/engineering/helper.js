@@ -11,12 +11,6 @@ export const  ContentEngineeringTableRows = [
       name: "PLATFORM",
       fields: [
         { rowHeader: false, colHeader: true, text: "PLATFORM" },
-        // {
-        //   rowHeader: false,
-        //   colHeader: false,
-        //   text: "",
-        //   typeInput: "textField",
-        // },
         {
           rowHeader: false,
           colHeader: false,
@@ -27,6 +21,7 @@ export const  ContentEngineeringTableRows = [
             { label: "Facebook" , id:"fb" },
             { label: "Instagram" ,id:"intsa"},
           ],
+          sendData:(data)=>{console.log("Data is " , data)}
         },
       ],
     },
@@ -207,18 +202,11 @@ export const  ContentEngineeringTableRows = [
       name: "CUSTOM AUDIENCE",
       fields: [
         { rowHeader: false, colHeader: true, text: "CUSTOM AUDIENCE" },
-        // {
-        //   rowHeader: false,
-        //   colHeader: false,
-        //   text: "",
-        //   typeInput: "textField",
-        // },
         {
           rowHeader: false,
           colHeader: false,
           text: "",
-          typeInput: "autoComplete",
-          multiple:true,
+          typeInput: "useAutoCompleteMulti",
           autocompleteId : "7",
           autocompleteOptionsRemotly : [
             { label: "Clothing" , id:"Clothing" },

@@ -3,8 +3,8 @@ import styles from "./Table.module.css";
 import RowTable from "./RowTable";
 
 function CustomTable({tableRows=[] , headerForm=""}) {
-  const tableRowsMap = tableRows.map(({ name, fields } , i) => {
-    return <RowTable name={name} fields={fields} key={i+name}></RowTable>;
+  const tableRowsMap = tableRows.map(({ name, fields  , sendData} , i) => {
+    return <RowTable name={name} fields={fields} key={i+name} sendData={sendData}></RowTable>;
   });
   return (
     <table>
