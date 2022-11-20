@@ -1,12 +1,4 @@
 export const  ContentEngineeringTableRows = [
-    // {
-    //   name: "mainHeader",
-    //   fields: [
-    //     { rowHeader: true, colHeader: false, text: "" },
-    //     { rowHeader: true, colHeader: false, text: "FILL IN COLLUMN" },
-    //     { rowHeader: true, colHeader: false, text: "DROP LIST" },
-    //   ],
-    // },
     {
       name: "PLATFORM",
       fields: [
@@ -16,31 +8,25 @@ export const  ContentEngineeringTableRows = [
           colHeader: false,
           text: "",
           typeInput: "autoComplete",
-          autocompleteId : "1",
+          autocompleteId : "platform",
           autocompleteOptionsRemotly : [
             { label: "Facebook" , id:"fb" },
             { label: "Instagram" ,id:"intsa"},
           ],
           sendData:(data)=>{console.log("Data is " , data)}
-        },
+        }
       ],
     },
     {
       name: "PLACEMENT",
       fields: [
         { rowHeader: false, colHeader: true, text: "PLACEMENT" },
-        // {
-        //   rowHeader: false,
-        //   colHeader: false,
-        //   text: "",
-        //   typeInput: "textField",
-        // },
         {
           rowHeader: false,
           colHeader: false,
           text: "",
           typeInput: "autoComplete",
-          autocompleteId : "2",
+          autocompleteId : "placement",
           autocompleteOptionsRemotly : [
             { label: "Facebook" , id:"fb" },
             { label: "Instagram" ,id:"intsa"},
@@ -54,12 +40,6 @@ export const  ContentEngineeringTableRows = [
       name: "PAGE NAME",
       fields: [
         { rowHeader: false, colHeader: true, text: "PAGE NAME" },
-        // {
-        //   rowHeader: false,
-        //   colHeader: false,
-        //   text: "",
-        //   typeInput: "textField",
-        // },
         {
           rowHeader: false,
           colHeader: false,
@@ -77,18 +57,12 @@ export const  ContentEngineeringTableRows = [
       name: "CAMPAIGN NAME",
       fields: [
         { rowHeader: false, colHeader: true, text: "CAMPAIGN NAME" },
-        // {
-        //   rowHeader: false,
-        //   colHeader: false,
-        //   text: "",
-        //   typeInput: "textField",
-        // },
         {
           rowHeader: false,
           colHeader: false,
           text: "",
           typeInput: "autoComplete",
-          autocompleteId : "4",
+          autocompleteId : "campaignName",
           autocompleteOptionsRemotly : [
             { label: "Sense_Aware_Reach_Sales_Insta" , id:"Sense_Aware_Reach_Sales_Insta" },
             { label: "Sense_Aware_Video_Sales_Insta" ,id:"Sense_Aware_Video_Sales_Insta"},
@@ -105,18 +79,12 @@ export const  ContentEngineeringTableRows = [
       name: "CAMPAIGN OBJECTIVE",
       fields: [
         { rowHeader: false, colHeader: true, text: "CAMPAIGN OBJECTIVE" },
-        // {
-        //   rowHeader: false,
-        //   colHeader: false,
-        //   text: "",
-        //   typeInput: "textField",
-        // },
         {
           rowHeader: false,
           colHeader: false,
           text: "",
           typeInput: "autoComplete",
-          autocompleteId : "5",
+          autocompleteId : "campaignObject",
           autocompleteOptionsRemotly : [
             { label: "Brand awareness" , id:"Brand awareness" },
             { label: "Reach" ,id:"Reach"},
@@ -138,18 +106,12 @@ export const  ContentEngineeringTableRows = [
       name: "RETARGETING",
       fields: [
         { rowHeader: false, colHeader: true, text: "RETARGETING" },
-        // {
-        //   rowHeader: false,
-        //   colHeader: false,
-        //   text: "",
-        //   typeInput: "textField",
-        // },
         {
           rowHeader: false,
           colHeader: false,
           text: "",
           typeInput: "autoComplete",
-          autocompleteId : "6",
+          autocompleteId : "retargeting",
           autocompleteOptionsRemotly : [
             { label: "Retargeting" , id:"Retargeting" },
           ],
@@ -160,18 +122,12 @@ export const  ContentEngineeringTableRows = [
       name: "ENGAGEMENT",
       fields: [
         { rowHeader: false, colHeader: true, text: "ENGAGEMENT" },
-        // {
-        //   rowHeader: false,
-        //   colHeader: false,
-        //   text: "",
-        //   typeInput: "textField",
-        // },
         {
           rowHeader: false,
           colHeader: false,
           text: "",
           typeInput: "autoComplete",
-          autocompleteId : "7",
+          autocompleteId : "engagement",
           autocompleteOptionsRemotly : [
             { label: "SPeople who either completed or viewed at least 15 sec of your video (thruPlay)" , id:"People who either completed or viewed at least 15 sec of your video (thruPlay)" },
           ],
@@ -182,18 +138,12 @@ export const  ContentEngineeringTableRows = [
       name: "ADD SET NAME",
       fields: [
         { rowHeader: false, colHeader: true, text: "ADD SET NAME" },
-        // {
-        //   rowHeader: false,
-        //   colHeader: false,
-        //   text: "",
-        //   typeInput: "textField",
-        // },
         {
           rowHeader: false,
           colHeader: false,
           text: "",
           typeInput: "autoComplete",
-          autocompleteId : "7",
+          autocompleteId : "addSetName",
           autocompleteOptionsRemotly : [],
         },
       ],
@@ -207,7 +157,7 @@ export const  ContentEngineeringTableRows = [
           colHeader: false,
           text: "",
           typeInput: "useAutoCompleteMulti",
-          autocompleteId : "7",
+          autocompleteId : "audience",
           autocompleteOptionsRemotly : [
             { label: "Clothing" , id:"Clothing" },
             { label: "Instagram" , id:"Instagram" },
@@ -219,18 +169,12 @@ export const  ContentEngineeringTableRows = [
       name: "EXCLUDED CUSTOM",
       fields: [
         { rowHeader: false, colHeader: true, text: "EXCLUDED CUSTOM" },
-        // {
-        //   rowHeader: false,
-        //   colHeader: false,
-        //   text: "",
-        //   typeInput: "textField",
-        // },
         {
           rowHeader: false,
           colHeader: false,
           text: "",
           typeInput: "autoComplete",
-          autocompleteId : "7",
+          autocompleteId : "excludedCustome",
           autocompleteOptionsRemotly : [
             { label: "CRM list" , id:"CRM list" },
           ],

@@ -10,7 +10,13 @@ import {Link} from "react-router-dom";
 
 
 function CreateContentForm() {
+   const sendEngineeringData=(data)=>{
+        console.log("sendEngineeringData<<< ", data)
+    }
 
+    const sendOperationData=(data)=>{
+        console.log("sendOperationData<<< ", data)
+    }
     return (
         <MainContainer>
             <Card sx={{overflow:'auto'}}>
@@ -21,10 +27,13 @@ function CreateContentForm() {
                             rowSpacing={1}
                             columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                             <Grid item xs={12} md={6}>
-                                <ContentEngineering></ContentEngineering>
+                                <ContentEngineering
+                                    sendEngineeringData={sendEngineeringData}></ContentEngineering>
                             </Grid>
                             <Grid item xs={12} md={6}>
-                                <ContentOperation></ContentOperation>
+                                <ContentOperation
+                                    sendOperationData={sendOperationData}
+                                ></ContentOperation>
                             </Grid>
                         </Grid>
                     </Box>

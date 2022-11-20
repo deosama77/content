@@ -29,6 +29,7 @@ function RowTable({ fields = [] }) {
       return <UseAutoCompleteMulti
       autocompleteId={autocompleteId}
       autocompleteOptionsRemotly={autocompleteOptionsRemotly}
+      sendData={sendData}
       ></UseAutoCompleteMulti>
     }
     

@@ -37,10 +37,8 @@ export default function UseAutoComplete({
       label: dialogValue.label,
       id:dialogValue.id
     });
-    sendData({
-      label: dialogValue.label,
-      id:dialogValue.id
-    })
+    sendData(
+    {id:dialogValue.id,value:dialogValue.label, field:autocompleteId})
     handleClose();
   };
 
@@ -61,7 +59,7 @@ export default function UseAutoComplete({
         id:newValue.inputValue
       });
     } else {
-      sendData(newValue)
+      sendData({id:newValue.id,value:newValue.label, field:autocompleteId})
       setValue(newValue);
     }
   };
