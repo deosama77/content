@@ -16,9 +16,7 @@ import { Button } from '@mui/material/index';
 import { IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import AddIcon from '@mui/icons-material/Add';
-import {Link} from "react-router-dom";
-
-
+import {useNavigate} from "react-router-dom";
 
 export default function TableCampaign() {
     const [order, setOrder] = React.useState('asc');
@@ -27,6 +25,11 @@ export default function TableCampaign() {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
+    const navigate =useNavigate();
+
+    const handleNewCampiagn=()=>{
+        navigate('/content-create')
+    }
     const handleRequestSort = (event, property) => {
         const isAsc = orderBy === property && order === 'asc';
         setOrder(isAsc ? 'desc' : 'asc');
@@ -81,15 +84,15 @@ export default function TableCampaign() {
     const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
     return (
-        <Box sx={{ width: '100%' }}>
+        <Box sx={{ width: '100%' ,marginTop:2}}>
             <Paper sx={{ width: '100%', mb: 2 }}>
                 <EnhancedTableToolbar numSelected={selected.length} tableName={'Campaigns'} />
                <div style={{padding:"0px 0px 20px 0px"}}>
-                   <Link to={"/content-create"} style={{decorators:'none'}}>
-                   <Button  variant="contained" endIcon={<AddIcon />}>
+
+                   <Button  variant="contained" endIcon={<AddIcon />} onClick={handleNewCampiagn}>
                        New Campaign
                    </Button>
-                   </Link>
+
                </div>
                 <TableContainer>
                     <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle" size={'small'}>

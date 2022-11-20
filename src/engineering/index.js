@@ -13,6 +13,7 @@ function ContentEngineering({sendEngineeringData=()=>{}}) {
         else array.push(element);
         return array
     }
+
    const ContentEngineeringTableRows = [
         {
             name: "PLATFORM",
@@ -61,7 +62,7 @@ function ContentEngineering({sendEngineeringData=()=>{}}) {
                     colHeader: false,
                     text: "",
                     typeInput: "autoComplete",
-                    autocompleteId : "pageName",
+                    autocompleteId : "page_name",
                     autocompleteOptionsRemotly : [
                         { label: "Sense MY" , id:"sensMy" },
 
@@ -79,7 +80,7 @@ function ContentEngineering({sendEngineeringData=()=>{}}) {
                     colHeader: false,
                     text: "",
                     typeInput: "autoComplete",
-                    autocompleteId : "campaignName",
+                    autocompleteId : "campaign_name",
                     autocompleteOptionsRemotly : [
                         { label: "Sense_Aware_Reach_Sales_Insta" , id:"Sense_Aware_Reach_Sales_Insta" },
                         { label: "Sense_Aware_Video_Sales_Insta" ,id:"Sense_Aware_Video_Sales_Insta"},
@@ -102,7 +103,7 @@ function ContentEngineering({sendEngineeringData=()=>{}}) {
                     colHeader: false,
                     text: "",
                     typeInput: "autoComplete",
-                    autocompleteId : "campaignObject",
+                    autocompleteId : "campaign_objective",
                     autocompleteOptionsRemotly : [
                         { label: "Brand awareness" , id:"Brand awareness" },
                         { label: "Reach" ,id:"Reach"},
@@ -149,7 +150,7 @@ function ContentEngineering({sendEngineeringData=()=>{}}) {
                     typeInput: "autoComplete",
                     autocompleteId : "engagement",
                     autocompleteOptionsRemotly : [
-                        { label: "SPeople who either completed or viewed at least 15 sec of your video (thruPlay)" , id:"People who either completed or viewed at least 15 sec of your video (thruPlay)" },
+                        { label: "People who either completed or viewed at least 15 sec of your video (thruPlay)" , id:"People who either completed or viewed at least 15 sec of your video (thruPlay)" },
                     ],
                     sendData:(data)=>setDataToSend(data)
                 },
@@ -164,7 +165,7 @@ function ContentEngineering({sendEngineeringData=()=>{}}) {
                     colHeader: false,
                     text: "",
                     typeInput: "autoComplete",
-                    autocompleteId : "addSetName",
+                    autocompleteId : "add_set_name",
                     autocompleteOptionsRemotly : [],
                 },
             ],
@@ -179,7 +180,7 @@ function ContentEngineering({sendEngineeringData=()=>{}}) {
                     colHeader: false,
                     text: "",
                     typeInput: "useAutoCompleteMulti",
-                    autocompleteId : "customAudience",
+                    autocompleteId : "audience",
                     autocompleteOptionsRemotly : [
                         { label: "Clothing" , id:"Clothing" },
                         { label: "Instagram" , id:"Instagram" },
@@ -197,7 +198,7 @@ function ContentEngineering({sendEngineeringData=()=>{}}) {
                     colHeader: false,
                     text: "",
                     typeInput: "autoComplete",
-                    autocompleteId : "excludedCustom",
+                    autocompleteId : "excluded_custom",
                     autocompleteOptionsRemotly : [
                         { label: "CRM list" , id:"CRM list" },
                     ],

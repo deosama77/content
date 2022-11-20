@@ -9,7 +9,9 @@ export default function UseAutoCompleteMulti({
   autocompleteOptionsRemotly = [],
     sendData=()=>{}
 }) {
-
+    const handleSendData=(event,value)=>{
+        sendData({id:value,value:value, field:autocompleteId})
+    }
     return (
     <Autocomplete
       sx={{ width: "100%" }}
@@ -18,13 +20,13 @@ export default function UseAutoCompleteMulti({
       options={autocompleteOptionsRemotly.map((option) => option.label)}
       freeSolo
       renderTags={(value, getTagProps) =>{
-          sendData({id:value,value, field:autocompleteId})
           return  value.map((option, index) => (
               <Chip variant="outlined" label={option} {...getTagProps({ index })} />
           ))
          }
       }
-      renderInput={(params) => <TextField {...params} variant="standard" />}
+       onChange={(e, value)=>handleSendData(e,value)}
+      renderInput={(params) => <TextField {...params} variant="standard"  />}
     />
   );
 }

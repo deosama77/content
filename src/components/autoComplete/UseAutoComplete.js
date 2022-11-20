@@ -37,8 +37,13 @@ export default function UseAutoComplete({
       label: dialogValue.label,
       id:dialogValue.id
     });
-    sendData(
-    {id:dialogValue.id,value:dialogValue.label, field:autocompleteId})
+    if(dialogValue&&dialogValue.label){
+      sendData(
+          {id:dialogValue.id,value:dialogValue.label, field:autocompleteId})
+    }else {
+      sendData({id:null,value:null, field:autocompleteId})
+    }
+
     handleClose();
   };
 
@@ -59,8 +64,13 @@ export default function UseAutoComplete({
         id:newValue.inputValue
       });
     } else {
-      sendData({id:newValue.id,value:newValue.label, field:autocompleteId})
       setValue(newValue);
+      if(newValue){
+        sendData({id:newValue.id,value:newValue.label, field:autocompleteId})
+      }else {
+        sendData({id:null,value:null, field:autocompleteId})
+      }
+
     }
   };
 

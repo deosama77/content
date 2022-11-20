@@ -6,16 +6,36 @@ import { Card, CardActions, CardContent } from "@mui/material";
 import MainContainer from "../../components/MainContainer";
 import ContentEngineering from "../../engineering";
 import ContentOperation from "../../operation";
-import {Link} from "react-router-dom";
-
+import {  useNavigate } from "react-router-dom";
 
 function CreateContentForm() {
-   const sendEngineeringData=(data)=>{
-        console.log("sendEngineeringData<<< ", data)
+     const navigate =useNavigate();
+    const handleClose=()=>{
+           navigate("/")
     }
+    const handleSubmit=()=>{
+          navigate("/")
+    }
+ const bodyData={}
 
-    const sendOperationData=(data)=>{
-        console.log("sendOperationData<<< ", data)
+   const sendEngineeringData=(engineeringdata)=>{
+
+
+       if(engineeringdata&&engineeringdata.length)
+           engineeringdata.forEach(data=>filterData(data))
+        console.log("sendEngineeringData<<< ", engineeringdata)
+        console.log("bodyData<<< ", bodyData)
+
+   }
+
+    const sendOperationData=(operationData)=>{
+        if(operationData&&operationData.length)
+            operationData.forEach(data=>filterData)
+        // console.log("sendOperationData<<< ", operationData)
+        // console.log("bodyData<<< ", bodyData)
+    }
+    const filterData=(data)=>{
+     return data.value? bodyData[data.field]=data.value:delete bodyData[data.field];
     }
     return (
         <MainContainer>
@@ -39,16 +59,15 @@ function CreateContentForm() {
                     </Box>
                 </CardContent>
                 <CardActions sx={{ position: "fixed", bottom: 2 , right:2}}>
-                    <Link to={"/"}>
-                    <Button variant="contained" size="small">
+
+                    <Button sx={{marginRight:2}} variant="contained" size="small" onClick={handleSubmit}>
                         Next
                     </Button>
-                    </Link>
-                    <Link to={"/"}>
-                        <Button variant="contained" color="error" size="small">
+
+                        <Button sx={{marginRight:1}} variant="contained" color="error" size="small" onClick={handleClose}>
                             Close
                         </Button>
-                    </Link>
+
 
                 </CardActions>
             </Card>
