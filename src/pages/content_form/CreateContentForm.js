@@ -39,7 +39,7 @@ function CreateContentForm() {
     }
     return (
         <MainContainer>
-            <Card sx={{overflow:'auto'}}>
+            <Card sx={{overflow:'auto' , marginTop:2}}>
                 <CardContent>
                     <Box sx={{ width: "100%", marginTop: 2, marginBottom: 4 }}>
                         <Grid
