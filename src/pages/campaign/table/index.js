@@ -17,6 +17,9 @@ import { IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import AddIcon from '@mui/icons-material/Add';
 import {useNavigate} from "react-router-dom";
+import {useEffect, useState} from "react";
+import axios from "axios";
+import {basic, campaign} from "../../../helper/api";
 
 export default function TableCampaign() {
     const [order, setOrder] = React.useState('asc');
@@ -24,6 +27,7 @@ export default function TableCampaign() {
     const [selected, setSelected] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    const [headers,setHeaders]=useState();
 
     const navigate =useNavigate();
 
@@ -46,8 +50,8 @@ export default function TableCampaign() {
     };
 
     const handleClick = (event, name) => {
-        console.log(event);
-        console.log('Name is ', name);
+        // console.log(event);
+        // console.log('Name is ', name);
         const selectedIndex = selected.indexOf(name);
         let newSelected = [];
 
@@ -83,6 +87,10 @@ export default function TableCampaign() {
     // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
+    useEffect(()=>{
+        axios.get(basic+campaign).then(response=>console.log("Rrsponse ",response))
+            .catch(error=>console.log("error",error))
+    },[])
     return (
         <Box sx={{ width: '100%' ,marginTop:2}}>
             <Paper sx={{ width: '100%', mb: 2 }}>
@@ -131,12 +139,12 @@ export default function TableCampaign() {
                                                 />
                                             </TableCell>
                                             <TableCell component="th" id={labelId} scope="row" padding="none">
-                                                {row.name}
+                                                {row.code}
                                             </TableCell>
-                                            <TableCell align="left">{row.calories}</TableCell>
-                                            <TableCell align="left">{row.fat}</TableCell>
-                                            <TableCell align="left">{row.carbs}</TableCell>
-                                            <TableCell align="left">{row.protein}</TableCell>
+                                            <TableCell align="left">{row.campaign_name}</TableCell>
+                                            <TableCell align="left">{row.PAGE_NAME}</TableCell>
+                                            <TableCell align="left">{row.Campaign_Objective}</TableCell>
+                                            <TableCell align="left">{row.Ad_Set_Name}</TableCell>
                                             <TableCell align="left">
                                                 <IconButton variant="outlined" onClick={handleEditRow}>
                                                     <EditIcon />

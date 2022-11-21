@@ -7,14 +7,15 @@ export function descendingComparator(a, b, orderBy) {
     }
     return 0;
 }
-
-export function createData(name, calories, fat, carbs, protein) {
+// Campaign Name , Page Name,Campaign Objective, Ad Set Name ,Ad Name
+export function createData(code,campaign_name, PAGE_NAME, Campaign_Objective, Ad_Set_Name ) {
     return {
-        name,
-        calories,
-        fat,
-        carbs,
-        protein
+        code,
+        campaign_name,
+        PAGE_NAME,
+        Campaign_Objective,
+        Ad_Set_Name,
+
     };
 }
 

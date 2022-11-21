@@ -15,6 +15,26 @@ function ContentEngineering({sendEngineeringData=()=>{}}) {
     }
 
    const ContentEngineeringTableRows = [
+       {
+           name: "Code",
+           fields: [
+               { rowHeader: false, colHeader: true, text: "CODE" },
+               {
+                   rowHeader: false,
+                   colHeader: false,
+                   text: "",
+                   typeInput: "autoComplete",
+                   autocompleteId : "code",
+                   autocompleteOptionsRemotly : [
+                       { label: "Facebook Ads_IMC5916_Msg Ads_Cecilia" , id:"Facebook Ads_IMC5916_Msg Ads_Cecilia" },
+                       { label: "Facebook Ads_IMC6012_Msg Ads_Cecilia" ,id:"acebook Ads_IMC6012_Msg Ads_Cecilia"},
+                       { label: "Facebook Ads_IMC5997_Msg Ads_Cecilia" ,id:"Facebook Ads_IMC5997_Msg Ads_Cecilia"},
+                       { label: "Facebook Ads_IMC6013_Msg Ads_Cecilia" ,id:"Facebook Ads_IMC6013_Msg Ads_Cecilia"},
+                   ],
+                   sendData:(data)=>setDataToSend(data)
+               }
+           ],
+       },
         {
             name: "PLATFORM",
             fields: [
@@ -150,7 +170,8 @@ function ContentEngineering({sendEngineeringData=()=>{}}) {
                     typeInput: "autoComplete",
                     autocompleteId : "engagement",
                     autocompleteOptionsRemotly : [
-                        { label: "People who either completed or viewed at least 15 sec of your video (thruPlay)" , id:"People who either completed or viewed at least 15 sec of your video (thruPlay)" },
+                        { label: "People who either completed or viewed at least 15 sec of your video (thruPlay)" ,
+                            id:"People who either completed or viewed at least 15 sec of your video (thruPlay)" },
                     ],
                     sendData:(data)=>setDataToSend(data)
                 },
@@ -166,10 +187,13 @@ function ContentEngineering({sendEngineeringData=()=>{}}) {
                     text: "",
                     typeInput: "autoComplete",
                     autocompleteId : "add_set_name",
-                    autocompleteOptionsRemotly : [],
+                    autocompleteOptionsRemotly : [
+                        { label: "AddSetName" , id:"AddSetName" },
+                    ],
+                    sendData:(data)=>setDataToSend(data)
                 },
             ],
-            sendData:(data)=>setDataToSend(data)
+
         },
         {
             name: "CUSTOM AUDIENCE",

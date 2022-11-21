@@ -7,6 +7,7 @@ import MainContainer from "../../components/MainContainer";
 import ContentEngineering from "../../engineering";
 import ContentOperation from "../../operation";
 import {  useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 function CreateContentForm() {
      const navigate =useNavigate();
@@ -14,29 +15,73 @@ function CreateContentForm() {
            navigate("/")
     }
     const handleSubmit=()=>{
-          navigate("/")
+        for(const field in bodyData){
+            if(typeof bodyData[field]==='object'){
+               bodyData[field] = mapDataToString(bodyData[field])
+            }
+        }
+        axios.post('http://localhost:8000/api/campiagn', {
+            ...bodyData
+            // platform:"platform 1",
+            // placement:"placement",
+            // page_name: "Page name",
+            // campaign_name: "campaign name",
+            // campaign_objective: "campaign objective",
+            // add_set_name: "Add set name",
+            // add_name: "add name"
+        })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                if(error&&error.response&&error.response.data){
+                    for(const errorField in error.response.data){
+                        console.log(errorField+":"+error.response.data[errorField]);
+
+                    }
+
+                }
+
+            });
+          // navigate("/")
     }
  const bodyData={}
 
    const sendEngineeringData=(engineeringdata)=>{
-
-
-       if(engineeringdata&&engineeringdata.length)
-           engineeringdata.forEach(data=>filterData(data))
-        console.log("sendEngineeringData<<< ", engineeringdata)
-        console.log("bodyData<<< ", bodyData)
-
+        if(engineeringdata&&engineeringdata.length)
+           engineeringdata.forEach(data=> {
+               if(typeof bodyData[data.field]=='object'){
+                   filterArrayData(data)
+               }else {
+                   filterStringData(data)
+               }
+               console.log("bodyData<<< typeof >> ", bodyData)
+           })
    }
 
     const sendOperationData=(operationData)=>{
         if(operationData&&operationData.length)
-            operationData.forEach(data=>filterData)
-        // console.log("sendOperationData<<< ", operationData)
-        // console.log("bodyData<<< ", bodyData)
+            operationData.forEach(data=> {
+                if(typeof bodyData[data.field]=='object'){
+                    filterArrayData(data)
+                }else {
+                    filterStringData(data)
+                }
+                console.log("bodyData<<< typeof >> ", bodyData)
+            })
     }
-    const filterData=(data)=>{
+
+    const filterStringData=(data)=>{
      return data.value? bodyData[data.field]=data.value:delete bodyData[data.field];
     }
+
+    const filterArrayData=(data)=>{
+        return data.value?.length? bodyData[data.field]=data.value:delete bodyData[data.field];
+    }
+
+    const mapDataToString=(array)=>array.toString();
+
+
     return (
         <MainContainer>
             <Card sx={{overflow:'auto' , marginTop:2}}>
