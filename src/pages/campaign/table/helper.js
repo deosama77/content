@@ -8,13 +8,14 @@ export function descendingComparator(a, b, orderBy) {
     return 0;
 }
 // Campaign Name , Page Name,Campaign Objective, Ad Set Name ,Ad Name
-export function createData(code,campaign_name, PAGE_NAME, Campaign_Objective, Ad_Set_Name ) {
+export function createData(id,code,campaign_name, page_name, campaign_objective, add_set_name ) {
     return {
+        id,
         code,
         campaign_name,
-        PAGE_NAME,
-        Campaign_Objective,
-        Ad_Set_Name,
+        page_name,
+        campaign_objective,
+        add_set_name,
 
     };
 }

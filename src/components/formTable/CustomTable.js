@@ -4,7 +4,7 @@ import RowTable from "./RowTable";
 
 function CustomTable({tableRows=[] , headerForm=""}) {
   const tableRowsMap = tableRows.map(({ name, fields  } , i) => {
-    return <RowTable name={name} fields={fields} key={i+name} ></RowTable>;
+    return <RowTable name={name} fields={fields} key={i+name} headerForm={headerForm}></RowTable>;
   });
   return (
     <table>

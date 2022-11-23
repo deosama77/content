@@ -1,96 +1,115 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import { Card, CardActions, CardContent } from "@mui/material";
+import {Card, CardActions, CardContent} from "@mui/material";
 import MainContainer from "../../components/MainContainer";
-import ContentEngineering from "../../engineering";
-import ContentOperation from "../../operation";
+import ContentEngineering from "../../components/engineering";
+import ContentOperation from "../../components/operation";
 import {  useNavigate } from "react-router-dom";
 import axios from 'axios';
+import {basic_api, campaign_api} from "../../helper/api";
+import ShowAlert from "../../components/ShowAlert";
+import {SeverityModel} from '../../components/ShowAlert/Models'
 
 function CreateContentForm() {
+    const [isAlert,setIsAlert]=useState(false);
+    const [messageAlert,setMessageAlert]=useState("");
+    const [severityAlert,setSeverityAlert]=useState("info")
+    const [bodyToSend,setBodyToSend]=useState({})
      const navigate =useNavigate();
+
     const handleClose=()=>{
+          setAlertFun(false,"",SeverityModel.info)
            navigate("/")
     }
+
     const handleSubmit=()=>{
-        for(const field in bodyData){
-            if(typeof bodyData[field]==='object'){
-               bodyData[field] = mapDataToString(bodyData[field])
+        for(const field in bodyToSend){
+            if(typeof bodyToSend[field]==='object'){
+                setBodyToSend({...bodyToSend,[field] : mapDataToString(bodyToSend[field])})
             }
         }
-        axios.post('http://localhost:8000/api/campiagn', {
-            ...bodyData
-            // platform:"platform 1",
-            // placement:"placement",
-            // page_name: "Page name",
-            // campaign_name: "campaign name",
-            // campaign_objective: "campaign objective",
-            // add_set_name: "Add set name",
-            // add_name: "add name"
+        axios.post(basic_api+campaign_api, {
+            ...bodyToSend
         })
             .then(function (response) {
-                console.log(response);
+                if(response){
+                    setAlertFun(true,"1 row is added successfully",SeverityModel.success)
+                }
             })
             .catch(function (error) {
                 if(error&&error.response&&error.response.data){
-                    for(const errorField in error.response.data){
-                        console.log(errorField+":"+error.response.data[errorField]);
-
-                    }
+                        const errorData=error.response.data;
+                        if(Object.keys(errorData).length)
+                        setAlertFun(true,Object.keys(errorData)[0]+" : "+error.response.data[Object.keys(errorData)[0]],SeverityModel.error)
 
                 }
 
             });
           // navigate("/")
     }
- const bodyData={}
+
+    const handleClear=()=>{
+        navigate(0)
+    }
+
+    const setAlertFun=(isAlert,message,severity)=>{
+        setIsAlert(isAlert);
+        setMessageAlert(message)
+        setSeverityAlert(severity)
+    }
 
    const sendEngineeringData=(engineeringdata)=>{
         if(engineeringdata&&engineeringdata.length)
            engineeringdata.forEach(data=> {
-               if(typeof bodyData[data.field]=='object'){
+               if(typeof bodyToSend[data.field]=='object'){
                    filterArrayData(data)
                }else {
                    filterStringData(data)
                }
-               console.log("bodyData<<< typeof >> ", bodyData)
            })
    }
 
     const sendOperationData=(operationData)=>{
         if(operationData&&operationData.length)
             operationData.forEach(data=> {
-                if(typeof bodyData[data.field]=='object'){
+                if(typeof bodyToSend[data.field]=='object'){
                     filterArrayData(data)
                 }else {
                     filterStringData(data)
                 }
-                console.log("bodyData<<< typeof >> ", bodyData)
+
             })
     }
 
     const filterStringData=(data)=>{
-     return data.value? bodyData[data.field]=data.value:delete bodyData[data.field];
+     return data.value? setBodyToSend({...bodyToSend,[data.field]:data.value}):setBodyToSend({...bodyToSend,[data.field]:undefined});
     }
 
     const filterArrayData=(data)=>{
-        return data.value?.length? bodyData[data.field]=data.value:delete bodyData[data.field];
+        return data.value?.length? setBodyToSend({...bodyToSend,[data.field]:data.value}):setBodyToSend({...bodyToSend,[data.field]:undefined});
     }
 
     const mapDataToString=(array)=>array.toString();
 
-
     return (
         <MainContainer>
-            <Card sx={{overflow:'auto' , marginTop:2}}>
+            <Card sx={{overflow:'auto' , marginTop:2 , paddingBottom:12}}>
                 <CardContent>
                     <Box sx={{ width: "100%", marginTop: 2, marginBottom: 4 }}>
                         <Grid
                             container
                             rowSpacing={1}
                             columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                            <Grid item xs={12} md={12}>
+                                <ShowAlert
+                                    open={isAlert}
+                                    setOpen={setIsAlert}
+                                    message={messageAlert}
+                                    severity={severityAlert}
+                                ></ShowAlert>
+                            </Grid>
                             <Grid item xs={12} md={6}>
                                 <ContentEngineering
                                     sendEngineeringData={sendEngineeringData}></ContentEngineering>
@@ -103,16 +122,19 @@ function CreateContentForm() {
                         </Grid>
                     </Box>
                 </CardContent>
-                <CardActions sx={{ position: "fixed", bottom: 2 , right:2}}>
+                <CardActions sx={{ position: "fixed", bottom: 2 , right:2,padding:0}}>
 
-                    <Button sx={{marginRight:2}} variant="contained" size="small" onClick={handleSubmit}>
+                    <Button sx={{marginRight:2}} variant="contained" size="middle" onClick={handleSubmit}>
                         Next
                     </Button>
 
-                        <Button sx={{marginRight:1}} variant="contained" color="error" size="small" onClick={handleClose}>
+                    <Button sx={{marginRight:1}} variant="contained" color="secondary" size="middle" onClick={handleClear}>
+                        Clear
+                    </Button>
+
+                        <Button sx={{marginRight:2}} variant="contained" color="error" size="middle" onClick={handleClose}>
                             Close
                         </Button>
-
 
                 </CardActions>
             </Card>

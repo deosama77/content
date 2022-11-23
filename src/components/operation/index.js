@@ -1,6 +1,5 @@
 import React from "react";
-import CustomTable from "../components/table/CustomTable";
-// import { OperationTableRows } from "./helper";
+import CustomTable from "../formTable/CustomTable";
 function ContentOperation({sendOperationData}) {
 
     let dataToSend=[]

@@ -4,7 +4,7 @@ import UseAutoCompleteMulti from "../UseAutoCompleteMulti";
 import UseInputTextField from "../UseInputTextField";
 import styles from "./Table.module.css";
 
-function RowTable({ fields = [] }) {
+function RowTable({ fields = [] ,headerForm=""}) {
 
   const getContentField = ({
     text,
@@ -23,6 +23,7 @@ function RowTable({ fields = [] }) {
           autocompleteId={autocompleteId}
           autocompleteOptionsRemotly={autocompleteOptionsRemotly}
           sendData={sendData}
+          headerForm={headerForm}
         ></UseAutoComplete>
       );
     } else if(typeInput==="useAutoCompleteMulti"){

@@ -1,27 +1,31 @@
-import { useState, Fragment } from "react";
+import {useState, Fragment} from "react";
 import TextField from "@mui/material/TextField";
 
 import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
 import DialogAutoComplete from "./DialogAutoComplete";
+import useFetchOptions from "../../helper/hooks/useFetchOptions";
+import {postNewOptions} from "../../helper/help";
+import {OPERATIONS_API} from "../../helper/api";
+
+
 
 const filter = createFilterOptions();
 
 export default function UseAutoComplete({
+  headerForm ="",
   autocompleteId = "-1",
   autocompleteOptionsRemotly = [],
   sendData=()=>{}
 }) {
   const [value, setValue] = useState(null);
   const [openDialog, toggleOpenDialog] = useState(false);
-  const [autocompleteOptions, setAutocompleteOptions] = useState(
-    autocompleteOptionsRemotly
-  );
+  const [autocompleteOptions, setAutocompleteOptions]=useFetchOptions( autocompleteId,autocompleteOptionsRemotly)
   const [addToOptionschecked, setaddToOptionschecked] = useState(true);
+
   const [dialogValue, setDialogValue] = useState({
     label: "",
     id:""
   });
-
 
   const handleClose = () => {
     setDialogValue({
@@ -37,9 +41,12 @@ export default function UseAutoComplete({
       label: dialogValue.label,
       id:dialogValue.id
     });
-    if(dialogValue&&dialogValue.label){
+    if(dialogValue&&dialogValue.label&&addToOptionschecked){
       sendData(
           {id:dialogValue.id,value:dialogValue.label, field:autocompleteId})
+         if(dialogValue.label.length>2){
+           postNewOptions(dialogValue , autocompleteId, headerForm)
+         }
     }else {
       sendData({id:null,value:null, field:autocompleteId})
     }
