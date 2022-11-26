@@ -19,7 +19,7 @@ import AddIcon from '@mui/icons-material/Add';
 import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
-import {basic_api, campaign_api , export_to_excel} from "../../../helper/api";
+import {basic_api, campaign_api , export_to_excel} from "../../helper/api";
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 export default function TableCampaign() {

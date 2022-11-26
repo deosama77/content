@@ -12,7 +12,7 @@ import {basic_api, campaign_api} from "../../helper/api";
 import ShowAlert from "../../components/ShowAlert";
 import {SeverityModel} from '../../components/ShowAlert/Models'
 
-function CreateContentForm() {
+function CreateCampaignForm() {
     const [isAlert,setIsAlert]=useState(false);
     const [messageAlert,setMessageAlert]=useState("");
     const [severityAlert,setSeverityAlert]=useState("info")
@@ -142,4 +142,4 @@ function CreateContentForm() {
     );
 }
 
-export default CreateContentForm;
+export default CreateCampaignForm;

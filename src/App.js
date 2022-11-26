@@ -1,7 +1,7 @@
 import "./App.css";
 
 
-import TableCampaign from "./pages/campaign/table";
+import TableCampaign from "./components/campaignTable";
 import MainContainer from "./components/MainContainer";
 import {Card, CardContent} from "@mui/material";
 

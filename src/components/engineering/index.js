@@ -1,10 +1,8 @@
 import React, {useEffect, useState} from "react";
-import CustomTable from "../formTable/CustomTable";
-import axios from "axios";
-import {audience_api , basic_api} from "../../helper/api";
+import CustomTable from "../tableForm/CustomTable";
+
 
 function ContentEngineering({sendEngineeringData=()=>{}}) {
-    const [audiences,setAudiences]=useState([])
     let dataToSend=[]
     const setDataToSend=(newValue)=>{
         // console.log("newValue >>  " , newValue)
@@ -212,7 +210,6 @@ function ContentEngineering({sendEngineeringData=()=>{}}) {
                     autocompleteOptionsRemotly : [
                         // { label: "Clothing" , id:"Clothing" },
                         // { label: "Instagram" , id:"Instagram" },
-                        ...audiences
                     ],
                     sendData:(data)=>setDataToSend(data)
                 },
@@ -236,14 +233,6 @@ function ContentEngineering({sendEngineeringData=()=>{}}) {
             ],
         },
     ];
-
-    useEffect(()=>{
-        axios.get(basic_api+audience_api).then(response=>{
-            if(!audiences.length)
-            setAudiences([...response.data])
-        }).catch(error=>console.log(error))
-    },[setAudiences])
-
 
 
     return (

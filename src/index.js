@@ -7,7 +7,7 @@ import {
     createBrowserRouter,
     RouterProvider,
 } from "react-router-dom";
-import CreateContentForm from "./pages/content_form/CreateContentForm";
+import CreateCampaignForm from "./pages/campaign_form/CreateCampaignForm";
 const router = createBrowserRouter([
     {
         path: "/",
@@ -15,7 +15,7 @@ const router = createBrowserRouter([
     },
     {
         path:"/content-create",
-        element: <CreateContentForm/>
+        element: <CreateCampaignForm/>
     }
 ]);
 const root = ReactDOM.createRoot(document.getElementById('root'));
