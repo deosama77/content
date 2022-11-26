@@ -25,13 +25,20 @@ function CreateCampaignForm() {
     }
 
     const handleSubmit=()=>{
-        for(const field in bodyToSend){
+        const copyBodyToSend={...bodyToSend}
+        for(const field in copyBodyToSend){
             if(typeof bodyToSend[field]==='object'){
-                setBodyToSend({...bodyToSend,[field] : mapDataToString(bodyToSend[field])})
+                console.log("copyBodyToSend > isdie type of ",copyBodyToSend)
+                // setBodyToSend({...bodyToSend,[field] : mapDataToString(bodyToSend[field])})
+                copyBodyToSend[field]=mapDataToString(bodyToSend[field])
+                console.log("mapDataToString(bodyToSend[field] > " ,
+                    mapDataToString(bodyToSend[field]))
             }
+
         }
+        console.log("copyBodyToSend " , copyBodyToSend)
         axios.post(basic_api+campaign_api, {
-            ...bodyToSend
+            ...copyBodyToSend
         })
             .then(function (response) {
                 if(response){

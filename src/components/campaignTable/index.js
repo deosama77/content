@@ -17,10 +17,12 @@ import { IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import AddIcon from '@mui/icons-material/Add';
 import {useNavigate} from "react-router-dom";
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import axios from "axios";
 import {basic_api, campaign_api , export_to_excel} from "../../helper/api";
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import ConfirmationDialog from "../ConfirmationDialog";
 
 export default function TableCampaign() {
     const [order, setOrder] = React.useState('asc');
@@ -29,6 +31,9 @@ export default function TableCampaign() {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
     const [rows,setRows]=useState([]);
+    const [openDialog,setOpenDialog]=useState(false);
+    const [isDelete,setIsDelete]=useState(false);
+    const [selectRowId,setSelectedRowId]=useState(-1)
 
     const navigate =useNavigate();
 
@@ -49,6 +54,19 @@ export default function TableCampaign() {
         }
         setSelected([]);
     };
+
+    const fetchDataTable=useCallback(()=>{
+        axios.get(basic_api+campaign_api).then(response=>{
+            if(response&&response.data){
+                setRows(setRowsFromResponse(response));
+            }
+        })
+            .catch(error=>console.log(error))
+    },[setRows])
+
+    useEffect(()=>{
+        fetchDataTable();
+    },[fetchDataTable])
 
     // const handleClick = (event, name) => {
     //     const selectedIndex = selected.indexOf(name);
@@ -79,7 +97,6 @@ export default function TableCampaign() {
     const isSelected = (name) => selected.indexOf(name) !== -1;
 
     const handleEditRow = () => {
-        console.log('Edit works');
         let newSelected = [];
         setSelected(newSelected);
     };
@@ -88,17 +105,32 @@ export default function TableCampaign() {
         window.location.href=basic_api+export_to_excel
     }
 
+    const handleDeleteRow=useCallback(()=>{
+        if(selectRowId&&isDelete){
+            setIsDelete(false)
+            setSelectedRowId(-1)
+            setOpenDialog(false)
+                axios.delete(basic_api+campaign_api+`/${selectRowId}`)
+                    .then(response=>{
+                        if(response&&response.status){
+                            fetchDataTable();
+                        }
+                    })
+                    .catch(error=>console.log(error))
+        }
+    },[selectRowId,isDelete,setIsDelete,setSelectedRowId,fetchDataTable])
+
+    useEffect(()=>{
+        handleDeleteRow();
+    },[handleDeleteRow])
+
+    const openDeleteDialog=(id)=>{
+         setOpenDialog(true)
+         setSelectedRowId(id)
+    }
     // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
-     useEffect(()=>{
-         axios.get(basic_api+campaign_api).then(response=>{
-             if(response&&response.data){
-                setRows(setRowsFromResponse(response));
-             }
-         })
-             .catch(error=>console.log(error))
-     },[setRows])
 
    const setRowsFromResponse=(response)=>{
        const rows=[]
@@ -111,6 +143,13 @@ export default function TableCampaign() {
     }
     return (
         <Box sx={{ width: '100%' ,marginTop:2}}>
+            <ConfirmationDialog open={openDialog}
+                                setOpen={setOpenDialog}
+                                value={isDelete}
+                                setValue={setIsDelete}
+                                title={"Delete Campaign"}
+                                body={"Are you delete you will delete the campaign"}
+            ></ConfirmationDialog>
             <Paper sx={{ width: '100%', mb: 2 }}>
                 <EnhancedTableToolbar numSelected={selected.length} tableName={'Campaigns'} />
                <div style={{padding:"0px 0px 20px 0px"}}>
@@ -171,6 +210,9 @@ export default function TableCampaign() {
                                             <TableCell align="left">
                                                 <IconButton variant="outlined" onClick={handleEditRow}>
                                                     <EditIcon />
+                                                </IconButton>
+                                                <IconButton variant="outlined" onClick={()=>openDeleteDialog(row.id)}>
+                                                    <DeleteForeverIcon></DeleteForeverIcon>
                                                 </IconButton>
                                             </TableCell>
                                         </TableRow>
