@@ -125,7 +125,7 @@ function CreateContentForm() {
                 <CardActions sx={{ position: "fixed", bottom: 2 , right:2,padding:0}}>
 
                     <Button sx={{marginRight:2}} variant="contained" size="middle" onClick={handleSubmit}>
-                        Next
+                        Save
                     </Button>
 
                     <Button sx={{marginRight:1}} variant="contained" color="secondary" size="middle" onClick={handleClear}>
