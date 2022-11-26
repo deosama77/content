@@ -20,6 +20,7 @@ import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {basic_api, campaign_api , export_to_excel} from "../../../helper/api";
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 export default function TableCampaign() {
     const [order, setOrder] = React.useState('asc');
@@ -118,7 +119,7 @@ export default function TableCampaign() {
                        New Campaign
                    </Button>
 
-                   <Button sx={{marginLeft:2}} variant="contained"  size="middle" onClick={handleExportToExcel}>
+                   <Button sx={{marginLeft:2}} variant="contained" endIcon={<ExitToAppIcon/>}  size="middle" onClick={handleExportToExcel}>
                        Export To Excel
                    </Button>
 
