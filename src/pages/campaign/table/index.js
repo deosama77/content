@@ -7,7 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import Checkbox from '@mui/material/Checkbox';
+// import Checkbox from '@mui/material/Checkbox';
 import {stableSort, getComparator, createData} from './helper';
 import {headCells} from './data';
 import { EnhancedTableHead } from './EnhancedTableHead';
@@ -19,7 +19,7 @@ import AddIcon from '@mui/icons-material/Add';
 import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
-import {basic_api, campaign_api} from "../../../helper/api";
+import {basic_api, campaign_api , export_to_excel} from "../../../helper/api";
 
 export default function TableCampaign() {
     const [order, setOrder] = React.useState('asc');
@@ -49,22 +49,22 @@ export default function TableCampaign() {
         setSelected([]);
     };
 
-    const handleClick = (event, name) => {
-        const selectedIndex = selected.indexOf(name);
-        let newSelected = [];
-
-        if (selectedIndex === -1) {
-            newSelected = newSelected.concat(selected, name);
-        } else if (selectedIndex === 0) {
-            newSelected = newSelected.concat(selected.slice(1));
-        } else if (selectedIndex === selected.length - 1) {
-            newSelected = newSelected.concat(selected.slice(0, -1));
-        } else if (selectedIndex > 0) {
-            newSelected = newSelected.concat(selected.slice(0, selectedIndex), selected.slice(selectedIndex + 1));
-        }
-
-        setSelected(newSelected);
-    };
+    // const handleClick = (event, name) => {
+    //     const selectedIndex = selected.indexOf(name);
+    //     let newSelected = [];
+    //
+    //     if (selectedIndex === -1) {
+    //         newSelected = newSelected.concat(selected, name);
+    //     } else if (selectedIndex === 0) {
+    //         newSelected = newSelected.concat(selected.slice(1));
+    //     } else if (selectedIndex === selected.length - 1) {
+    //         newSelected = newSelected.concat(selected.slice(0, -1));
+    //     } else if (selectedIndex > 0) {
+    //         newSelected = newSelected.concat(selected.slice(0, selectedIndex), selected.slice(selectedIndex + 1));
+    //     }
+    //
+    //     setSelected(newSelected);
+    // };
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -83,7 +83,9 @@ export default function TableCampaign() {
         setSelected(newSelected);
     };
 
-    const handleExportToExcel=()=>{}
+    const handleExportToExcel=()=>{
+        window.location.href=basic_api+export_to_excel
+    }
 
     // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
@@ -120,7 +122,6 @@ export default function TableCampaign() {
                        Export To Excel
                    </Button>
 
-
                </div>
                 <TableContainer>
                     <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle" size={'small'}>
@@ -149,16 +150,16 @@ export default function TableCampaign() {
                                             key={row.id}
                                             selected={isItemSelected}
                                         >
-                                            <TableCell padding="checkbox">
-                                                <Checkbox
-                                                    onClick={(event) => handleClick(event, row.name)}
-                                                    color="primary"
-                                                    checked={isItemSelected}
-                                                    inputProps={{
-                                                        'aria-labelledby': labelId
-                                                    }}
-                                                />
-                                            </TableCell>
+                                            {/*<TableCell padding="checkbox">*/}
+                                            {/*    <Checkbox*/}
+                                            {/*        onClick={(event) => handleClick(event, row.name)}*/}
+                                            {/*        color="primary"*/}
+                                            {/*        checked={isItemSelected}*/}
+                                            {/*        inputProps={{*/}
+                                            {/*            'aria-labelledby': labelId*/}
+                                            {/*        }}*/}
+                                            {/*    />*/}
+                                            {/*</TableCell>*/}
                                             <TableCell component="th" id={labelId} scope="row" padding="none">
                                                 {row.code}
                                             </TableCell>
