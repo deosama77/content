@@ -154,11 +154,11 @@ export default function TableCampaign() {
                 <EnhancedTableToolbar numSelected={selected.length} tableName={'Campaigns'} />
                <div style={{padding:"0px 0px 20px 0px"}}>
 
-                   <Button sx={{marginLeft:2}} variant="contained" endIcon={<AddIcon />} onClick={handleNewCampiagn}>
+                   <Button sx={{marginLeft:2}} variant="contained" startIcon={<AddIcon />} onClick={handleNewCampiagn}>
                        New Campaign
                    </Button>
 
-                   <Button sx={{marginLeft:2}} variant="contained" endIcon={<ExitToAppIcon/>}  size="middle" onClick={handleExportToExcel}>
+                   <Button sx={{marginLeft:2}} variant="contained" startIcon={<ExitToAppIcon/>}  size="middle" onClick={handleExportToExcel}>
                        Export To Excel
                    </Button>
 

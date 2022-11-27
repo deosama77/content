@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import {Card, CardActions, CardContent} from "@mui/material";
+import {Card, CardActions, CardContent, Checkbox, FormControlLabel} from "@mui/material";
 import MainContainer from "../../components/MainContainer";
 import ContentEngineering from "../../components/engineering";
 import ContentOperation from "../../components/operation";
@@ -12,11 +12,13 @@ import {basic_api, campaign_api} from "../../helper/api";
 import ShowAlert from "../../components/ShowAlert";
 import {SeverityModel} from '../../components/ShowAlert/Models'
 
+
 function CreateCampaignForm() {
     const [isAlert,setIsAlert]=useState(false);
     const [messageAlert,setMessageAlert]=useState("");
     const [severityAlert,setSeverityAlert]=useState("info")
     const [bodyToSend,setBodyToSend]=useState({})
+    const [checkTemplate,setCheckTemplate]=useState(false)
      const navigate =useNavigate();
 
     const handleClose=()=>{
@@ -95,6 +97,9 @@ function CreateCampaignForm() {
 
     const mapDataToString=(array)=>array.toString();
 
+    const handlCheckTemplate=()=>[
+        setCheckTemplate(prev=>!prev)
+    ]
     return (
         <MainContainer>
             <Card sx={{overflow:'auto' , marginTop:2 , paddingBottom:12}}>
@@ -115,6 +120,12 @@ function CreateCampaignForm() {
                             <Grid item xs={12} md={6}>
                                 <ContentEngineering
                                     sendEngineeringData={sendEngineeringData}></ContentEngineering>
+
+                                <FormControlLabel
+                                    sx={{position:"fixed",left:40,bottom:4 , color:"blue" , fontSize:20}}
+                                    control={<Checkbox checked={checkTemplate}
+                                                       onChange={handlCheckTemplate}></Checkbox>} label="Save Template"></FormControlLabel>
+
                             </Grid>
                             <Grid item xs={12} md={6}>
                                 <ContentOperation
@@ -125,7 +136,6 @@ function CreateCampaignForm() {
                     </Box>
                 </CardContent>
                 <CardActions sx={{ position: "fixed", bottom: 2 , right:2,padding:0}}>
-
                     <Button sx={{marginRight:2}} variant="contained" size="middle" onClick={handleSubmit}>
                         Save
                     </Button>
