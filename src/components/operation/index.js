@@ -4,7 +4,6 @@ function ContentOperation({sendOperationData}) {
 
     let dataToSend=[]
     const setDataToSend=(newValue)=>{
-        console.log("neew value >> " , newValue)
          sendOperationData(updateOrSet(dataToSend,newValue))
     }
     function updateOrSet(array, element) { // (1)

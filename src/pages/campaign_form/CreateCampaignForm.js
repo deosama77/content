@@ -11,15 +11,215 @@ import axios from 'axios';
 import {basic_api, campaign_api} from "../../helper/api";
 import ShowAlert from "../../components/ShowAlert";
 import {SeverityModel} from '../../components/ShowAlert/Models'
-
-
+import { useParams } from 'react-router-dom';
+import  {updateOrSet} from './help'
 function CreateCampaignForm() {
+
+    const contentEngineeringTableRows = [
+        {
+            name: "Code",
+            fields: [
+                { rowHeader: false, colHeader: true, text: "CODE" },
+                {
+                    rowHeader: false,
+                    colHeader: false,
+                    text: "",
+                    typeInput: "autoComplete",
+                    autocompleteId : "code",
+                    autocompleteOptionsRemotly : [
+                    ],
+                    sendData:(data)=>setDataToSend(data)
+                }
+            ],
+        },
+        {
+            name: "PLATFORM",
+            fields: [
+                { rowHeader: false, colHeader: true, text: "PLATFORM" },
+                {
+                    rowHeader: false,
+                    colHeader: false,
+                    text: "",
+                    typeInput: "autoComplete",
+                    autocompleteId : "platform",
+                    autocompleteOptionsRemotly : [],
+                    sendData:(data)=>setDataToSend(data)
+                }
+            ],
+        },
+        {
+            name: "PLACEMENT",
+            fields: [
+                { rowHeader: false, colHeader: true, text: "PLACEMENT" },
+                {
+                    rowHeader: false,
+                    colHeader: false,
+                    text: "",
+                    typeInput: "autoComplete",
+                    autocompleteId : "placement",
+                    autocompleteOptionsRemotly : [
+                        // { label: "Facebook" , id:"fb" },
+                        // { label: "Instagram" ,id:"intsa"},
+                        // { label: "Audience network" ,id:"network"},
+                        // { label: "Messenger" ,id:"messenger"},
+                    ],
+                    sendData:(data)=>setDataToSend(data)
+                },
+            ],
+        },
+        {
+            name: "PAGE NAME",
+            fields: [
+                { rowHeader: false, colHeader: true, text: "PAGE NAME" },
+                {
+                    rowHeader: false,
+                    colHeader: false,
+                    text: "",
+                    typeInput: "autoComplete",
+                    autocompleteId : "page_name",
+                    autocompleteOptionsRemotly : [
+                        // / { label: "Sense MY" , id:"sensMy" },
+
+                    ],
+                    sendData:(data)=>{setDataToSend(data)}
+                },
+            ],
+        },
+        {
+            name: "CAMPAIGN NAME",
+            fields: [
+                { rowHeader: false, colHeader: true, text: "CAMPAIGN NAME" },
+                {
+                    rowHeader: false,
+                    colHeader: false,
+                    text: "",
+                    typeInput: "autoComplete",
+                    autocompleteId : "campaign_name",
+                    autocompleteOptionsRemotly : [],
+                    sendData:(data)=>setDataToSend(data)
+                },
+            ],
+        },
+        {
+            name: "CAMPAIGN OBJECTIVE",
+            fields: [
+                { rowHeader: false, colHeader: true, text: "CAMPAIGN OBJECTIVE" },
+                {
+                    rowHeader: false,
+                    colHeader: false,
+                    text: "",
+                    typeInput: "autoComplete",
+                    autocompleteId : "campaign_objective",
+                    autocompleteOptionsRemotly : [],
+                    sendData:(data)=>setDataToSend(data)
+                },
+            ],
+        },
+        {
+            name: "RETARGETING",
+            fields: [
+                { rowHeader: false, colHeader: true, text: "RETARGETING" },
+                {
+                    rowHeader: false,
+                    colHeader: false,
+                    text: "",
+                    typeInput: "autoComplete",
+                    autocompleteId : "retargeting",
+                    autocompleteOptionsRemotly : [
+                        // { label: "Retargeting" , id:"Retargeting" },
+                    ],
+                    sendData:(data)=>setDataToSend(data)
+                },
+            ],
+        },
+        {
+            name: "ENGAGEMENT",
+            fields: [
+                { rowHeader: false, colHeader: true, text: "ENGAGEMENT" },
+                {
+                    rowHeader: false,
+                    colHeader: false,
+                    text: "",
+                    typeInput: "autoComplete",
+                    autocompleteId : "engagement",
+                    autocompleteOptionsRemotly : [
+                        // { label: "People who either completed or viewed at least 15 sec of your video (thruPlay)" ,
+                        //     id:"People who either completed or viewed at least 15 sec of your video (thruPlay)" },
+                    ],
+                    sendData:(data)=>setDataToSend(data)
+                },
+            ],
+        },
+        {
+            name: "ADD SET NAME",
+            fields: [
+                { rowHeader: false, colHeader: true, text: "ADD SET NAME" },
+                {
+                    rowHeader: false,
+                    colHeader: false,
+                    text: "",
+                    typeInput: "autoComplete",
+                    autocompleteId : "add_set_name",
+                    autocompleteOptionsRemotly : [
+                        // { label: "AddSetName" , id:"AddSetName" },
+                    ],
+                    sendData:(data)=>setDataToSend(data)
+                },
+            ],
+        },
+        {
+            name: "CUSTOM AUDIENCE",
+            fields: [
+                { rowHeader: false, colHeader: true, text: "CUSTOM AUDIENCE" },
+                {
+                    rowHeader: false,
+                    colHeader: false,
+                    text: "",
+                    typeInput: "useAutoCompleteMulti",
+                    autocompleteId : "audience",
+                    autocompleteOptionsRemotly : [
+                        // { label: "Clothing" , id:"Clothing" },
+                        // { label: "Instagram" , id:"Instagram" },
+                    ],
+                    sendData:(data)=>setDataToSend(data)
+                },
+            ],
+        },
+        {
+            name: "EXCLUDED CUSTOM",
+            fields: [
+                { rowHeader: false, colHeader: true, text: "EXCLUDED CUSTOM" },
+                {
+                    rowHeader: false,
+                    colHeader: false,
+                    text: "",
+                    typeInput: "autoComplete",
+                    autocompleteId : "excluded_custom",
+                    autocompleteOptionsRemotly : [
+                        // { label: "CRM list" , id:"CRM list" },
+                    ],
+                    sendData:(data)=>setDataToSend(data)
+                },
+            ],
+        },
+    ];
+
     const [isAlert,setIsAlert]=useState(false);
     const [messageAlert,setMessageAlert]=useState("");
     const [severityAlert,setSeverityAlert]=useState("info")
     const [bodyToSend,setBodyToSend]=useState({})
     const [checkTemplate,setCheckTemplate]=useState(false)
      const navigate =useNavigate();
+    const {id}=useParams();
+
+    let dataToSend=[]
+    const setDataToSend=(newValue)=>{
+        console.log("dataToSend > " , dataToSend)
+        console.log("bodyToSend > " , bodyToSend)
+        // sendEngineeringData(updateOrSet(dataToSend,newValue))
+        setBodyToSend({...bodyToSend,[newValue.field]:newValue.value})
+    }
+
 
     const handleClose=()=>{
           setAlertFun(false,"",SeverityModel.info)
@@ -64,16 +264,16 @@ function CreateCampaignForm() {
         setSeverityAlert(severity)
     }
 
-   const sendEngineeringData=(engineeringdata)=>{
-        if(engineeringdata&&engineeringdata.length)
-           engineeringdata.forEach(data=> {
-               if(typeof bodyToSend[data.field]=='object'){
-                   filterArrayData(data)
-               }else {
-                   filterStringData(data)
-               }
-           })
-   }
+   // const sendEngineeringData=(engineeringdata)=>{
+   //      if(engineeringdata&&engineeringdata.length)
+   //         engineeringdata.forEach(data=> {
+   //             if(typeof bodyToSend[data.field]=='object'){
+   //                 filterArrayData(data)
+   //             }else {
+   //                 filterStringData(data)
+   //             }
+   //         })
+   // }
 
     const sendOperationData=(operationData)=>{
         if(operationData&&operationData.length)
@@ -119,7 +319,7 @@ function CreateCampaignForm() {
                             </Grid>
                             <Grid item xs={12} md={6}>
                                 <ContentEngineering
-                                    sendEngineeringData={sendEngineeringData}></ContentEngineering>
+                                    contentEngineeringTableRows={contentEngineeringTableRows}></ContentEngineering>
 
                                 <FormControlLabel
                                     sx={{position:"fixed",left:40,bottom:4 , color:"blue" , fontSize:20}}

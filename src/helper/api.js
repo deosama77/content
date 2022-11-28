@@ -1,4 +1,4 @@
- // export const basic_api="http://localhost:8000/api/"
+  // export const basic_api="http://localhost:8000/api/"
  export const basic_api="http://ec2-13-213-5-240.ap-southeast-1.compute.amazonaws.com:8000/api/"
 // export const basic_operation="http://localhost:8000/operation/"
 export const basic_operation="http://ec2-13-213-5-240.ap-southeast-1.compute.amazonaws.com:8000/operation/"

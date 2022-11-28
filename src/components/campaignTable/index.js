@@ -96,9 +96,8 @@ export default function TableCampaign() {
 
     const isSelected = (name) => selected.indexOf(name) !== -1;
 
-    const handleEditRow = () => {
-        let newSelected = [];
-        setSelected(newSelected);
+    const handleEditRow = (id) => {
+           navigate(`/content-create/${id}`)
     };
 
     const handleExportToExcel=()=>{
@@ -208,7 +207,7 @@ export default function TableCampaign() {
                                             <TableCell align="left">{row.campaign_objective}</TableCell>
                                             <TableCell align="left">{row.add_set_name}</TableCell>
                                             <TableCell align="left">
-                                                <IconButton variant="outlined" onClick={handleEditRow}>
+                                                <IconButton variant="outlined" onClick={()=>handleEditRow(row.id)}>
                                                     <EditIcon />
                                                 </IconButton>
                                                 <IconButton variant="outlined" onClick={()=>openDeleteDialog(row.id)}>

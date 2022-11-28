@@ -16,6 +16,10 @@ const router = createBrowserRouter([
     {
         path:"/content-create",
         element: <CreateCampaignForm/>
+    },
+    {
+        path:"/content-create/:id",
+        element: <CreateCampaignForm/>
     }
 ]);
 const root = ReactDOM.createRoot(document.getElementById('root'));
