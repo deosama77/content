@@ -1,7 +1,7 @@
   // export const basic_api="http://localhost:8000/api/"
- export const basic_api="http://ec2-54-179-50-141.ap-southeast-1.compute.amazonaws.com:8000/api/"
+ export const basic_api="http://ec2-13-229-96-100.ap-southeast-1.compute.amazonaws.com:8000/api/"
 // export const basic_operation="http://localhost:8000/operation/"
-export const basic_operation="http://ec2-54-179-50-141.ap-southeast-1.compute.amazonaws.com:8000/operation/"
+export const basic_operation="http://ec2-13-229-96-100.ap-southeast-1.compute.amazonaws.com:8000/operation/"
 
 
 export const campaign_api="campaign";
